@@ -1,4 +1,4 @@
-(define-module (custom-channel packages suckless)
+(define-module (custom-channel packages custom-suckless)
   #:use-module (gnu packages)
   #:use-module (gnu packages base)
   #:use-module (gnu packages compression)
