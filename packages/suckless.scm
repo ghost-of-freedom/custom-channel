@@ -74,13 +74,13 @@ drawing.")
      (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/gnotclub/xst")
-             (commit (string-append "v" version))))
+             (url "https://github.com/ghost-of-freedom/st")
+             (commit "62583225a9dfb975175d4f0c3053c2c2b41be5f3")))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1q64x7czpbcg0v509qchn5v96zdnx7jmvy0zxhjmkk3d10x5rqlw"))))
-    (home-page "https://github.com/gnotclub/xst")
-    (synopsis "Fork of st that uses Xresources")
+        (base32 "00bp9ilnsli8r9agl9hp1vvk4j3s295bzpq9pcf8zfhs0kipvh0s"))))
+    (home-page "https://github.com/ghost-of-freedom/st")
+    (synopsis "Fork of st with few patches")
     (description
      "@command{xst} uses Xresources and applies the following patches to
 @command{st}:
