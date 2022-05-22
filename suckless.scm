@@ -25,9 +25,9 @@
   #:use-module (guix utils)
   #:use-module (guix packages))
 
-(define-public custom/st
+(define-public custom-st-base
   (package
-   (name "custom/st")
+   (name "custom-st-base")
    (version "0.8.5")
    (source
     (origin
@@ -65,10 +65,10 @@ antialiased fonts (using fontconfig), fallback fonts, resizing, and line
 drawing.")
        (license license:x11)))
 
-(define-public custom/xst
+(define-public custom-st
   (package
-    (inherit custom/st)
-    (name "custom/xst")
+    (inherit custom-st-base)
+    (name "custom-st")
     (version "0.8.4.1")
     (source
      (origin
@@ -82,7 +82,7 @@ drawing.")
     (home-page "https://github.com/ghost-of-freedom/st")
     (synopsis "Fork of st with few patches")
     (description
-     "@command{xst} uses Xresources and applies the following patches to
+     "@command{st} uses Xresources and applies the following patches to
 @command{st}:
 @itemize
 @item @uref{https://st.suckless.org/patches/alpha/, alpha}
