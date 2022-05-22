@@ -25,9 +25,9 @@
   #:use-module (guix utils)
   #:use-module (guix packages))
 
-(define-public st
+(define-public custom/st
   (package
-   (name "st")
+   (name "custom/st")
    (version "0.8.5")
    (source
     (origin
@@ -65,10 +65,10 @@ antialiased fonts (using fontconfig), fallback fonts, resizing, and line
 drawing.")
        (license license:x11)))
 
-(define-public xst
+(define-public custom/xst
   (package
-    (inherit st)
-    (name "xst")
+    (inherit custom/st)
+    (name "custom/xst")
     (version "0.8.4.1")
     (source
      (origin
