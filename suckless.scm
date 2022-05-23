@@ -25,17 +25,19 @@
   #:use-module (guix utils)
   #:use-module (guix packages))
 
-(define-public custom-st-base
+(define-public custom-st
   (package
-   (name "custom-st-base")
-   (version "0.8.5")
-   (source
-    (origin
-     (method url-fetch)
-     (uri (string-append "https://dl.suckless.org/st/st-"
-                         version ".tar.gz"))
-     (sha256
-      (base32 "0dxb8ksy4rcnhp5k54p7i7wwhm64ksmavf5wh90zfbyh7qh34s7a"))))
+    (name "custom-st")
+    (version "1.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/ghost-of-freedom/st")
+             (commit "46de2f8fefcb2419ee012851db8ea165aaea5608")))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1bmslm3hxwjmkm9apazp2kglwr60lniwbr8cqbz13b8xcq8cia18"))))
    (build-system gnu-build-system)
    (arguments
     `(#:tests? #f                      ; no tests
@@ -56,57 +58,30 @@
    (native-inputs
     (list ncurses ;provides tic program
           pkg-config))
-   (home-page "https://st.suckless.org/")
-   (synopsis "Simple terminal emulator")
-   (description
-         "St implements a simple and lightweight terminal emulator.  It
-implements 256 colors, most VT10X escape sequences, utf8, X11 copy/paste,
-antialiased fonts (using fontconfig), fallback fonts, resizing, and line
-drawing.")
-       (license license:x11)))
+    (home-page "https://github.com/ghost-of-freedom/st")
+    (synopsis "Fork of st with custom config and few patches")
+    (description
+     "@command{st} with custom config and following patches:
+@itemize
+@item @uref{https://st.suckless.org/patches/solarized/, solarized-light}
+@item @uref{https://st.suckless.org/patches/boxdraw/, boxdraw}
+@item @uref{https://st.suckless.org/patches/bold-is-not-bright/, bold-is-not-bright}
+@end itemize")
+    (license license:expat)))
 
-(define-public custom-st
+(define-public custom-dmenu
   (package
-    (inherit custom-st-base)
-    (name "custom-st")
-    (version "0.8.4.1")
+    (name "custom-dmenu")
+    (version "1.0")
     (source
      (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/ghost-of-freedom/st")
-             (commit "62583225a9dfb975175d4f0c3053c2c2b41be5f3")))
+             (url "https://github.com/ghost-of-freedom/dmenu")
+             (commit "b277baa37bfb4bf7157a0c5c888b33ddfe9a8a01")))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "00bp9ilnsli8r9agl9hp1vvk4j3s295bzpq9pcf8zfhs0kipvh0s"))))
-    (home-page "https://github.com/ghost-of-freedom/st")
-    (synopsis "Fork of st with few patches")
-    (description
-     "@command{st} uses Xresources and applies the following patches to
-@command{st}:
-@itemize
-@item @uref{https://st.suckless.org/patches/alpha/, alpha}
-@item @uref{https://st.suckless.org/patches/boxdraw/, boxdraw}
-@item @uref{https://st.suckless.org/patches/clipboard/, clipboard}
-@item @uref{https://st.suckless.org/patches/disable_bold_italic_fonts/, disable_bold_italic_fonts}
-@item @uref{https://st.suckless.org/patches/externalpipe/, externalpipe}
-@item @uref{https://st.suckless.org/patches/scrollback/, scrollback}
-@item @uref{https://st.suckless.org/patches/spoiler/, spoiler}
-@item @uref{https://st.suckless.org/patches/vertcenter/, vertcenter}
-@end itemize")
-    (license license:expat)))
-
-(define-public custom-dmenu-base
-  (package
-    (name "custom-dmenu-base")
-    (version "5.1")
-    (source (origin
-              (method url-fetch)
-              (uri (string-append "https://dl.suckless.org/tools/dmenu-"
-                                  version ".tar.gz"))
-              (sha256
-               (base32
-                "1mcg6i5g2c4wsyq9ap739si4zghk1xg6c3msdqrbfzm3pfg70k8z"))))
+        (base32 "174rvnwnw1sb424jzz3sxa3mfza6frkwnf8k4d13200nfz3x5x8m"))))
     (build-system gnu-build-system)
     (arguments
      `(#:tests? #f                      ; no tests
@@ -120,40 +95,15 @@ drawing.")
        (modify-phases %standard-phases (delete 'configure))))
     (inputs
      (list freetype libxft libx11 libxinerama))
-    (home-page "https://tools.suckless.org/dmenu/")
-    (synopsis "Dynamic menu")
-    (description
-     "A dynamic menu for X, originally designed for dwm.  It manages large
-numbers of user-defined menu items efficiently.")
-    (license license:x11)))
-
-(define-public custom-dmenu
-  (package
-    (inherit custom-dmenu-base)
-    (name "custom-dmenu")
-    (version "1.0")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/ghost-of-freedom/dmenu")
-             (commit "6889ad97fbbcf0f8856f94abd538b6ebafd3d9c3")))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0ayiyl9f9agj6if6rjpaxa2dsb1nrchhf4k5xc402fwjlyxahk4k"))))
     (home-page "https://github.com/ghost-of-freedom/dmenu")
-    (synopsis "Fork of dmenu with few patches")
+    (synopsis "Fork of dmenu with custom config and few patches")
     (description
-     "@command{dmenu} uses Xresources and applies the following patches to
-@command{dmenu}:
+     "@command{dmenu} with custom config and following patches:
 @itemize
-@item @uref{https://st.suckless.org/patches/alpha/, alpha}
-@item @uref{https://st.suckless.org/patches/boxdraw/, boxdraw}
-@item @uref{https://st.suckless.org/patches/clipboard/, clipboard}
-@item @uref{https://st.suckless.org/patches/disable_bold_italic_fonts/, disable_bold_italic_fonts}
-@item @uref{https://st.suckless.org/patches/externalpipe/, externalpipe}
-@item @uref{https://st.suckless.org/patches/scrollback/, scrollback}
-@item @uref{https://st.suckless.org/patches/spoiler/, spoiler}
-@item @uref{https://st.suckless.org/patches/vertcenter/, vertcenter}
+@item @uref{https://tools.suckless.org/dmenu/patches/solarized/, solarized-light}
+@item @uref{https://tools.suckless.org/dmenu/patches/case-insensitive/, case-insensitive}
+@item @uref{https://tools.suckless.org/dmenu/patches/center/, center}
+@item @uref{https://tools.suckless.org/dmenu/patches/border/, border}
+@item @uref{https://tools.suckless.org/dmenu/patches/mouse-support/, mouse-support}
 @end itemize")
     (license license:expat)))
