@@ -3,7 +3,7 @@
   #:use-module (gnu packages qt)
   #:use-module (gnu packages kde-frameworks)
   #:use-module (gnu packages freedesktop)
-  #:use-module (guix git download)
+  #:use-module (guix git-download)
   #:use-module (guix licenses)
   #:use-module (guix build-system cmake))
 
