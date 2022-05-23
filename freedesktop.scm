@@ -16,10 +16,10 @@
      (method git-fetch)
      (uri (git-reference
            (url "https://github.com/ghost-of-freedom/xdg-desktop-portal-kde")
-           (commit "45c8492ba7cd2339a76e910e5bf510c29cb5af57")))
+           (commit "5780ff5910d848db669e03e7f25d5762d06451bf")))
      (file-name (git-file-name name version))
      (sha256
-      (base32 "1dkaskm8vprnw0kvg5ca62rhk1f8vaqbwr3vks1ji2hfhr9rcb56"))))
+      (base32 "1v69679z4fgjwai9lrabv1ikniv89f2xkbyij0kxprh04ynw045r"))))
    (build-system cmake-build-system)
    (inputs
     (list qtbase-5 kcoreaddons ki18n knotifications))
