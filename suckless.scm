@@ -95,3 +95,65 @@ drawing.")
 @item @uref{https://st.suckless.org/patches/vertcenter/, vertcenter}
 @end itemize")
     (license license:expat)))
+
+(define-public custom-dmenu-base
+  (package
+    (name "custom-dmenu-base")
+    (version "5.1")
+    (source (origin
+              (method url-fetch)
+              (uri (string-append "https://dl.suckless.org/tools/dmenu-"
+                                  version ".tar.gz"))
+              (sha256
+               (base32
+                "1mcg6i5g2c4wsyq9ap739si4zghk1xg6c3msdqrbfzm3pfg70k8z"))))
+    (build-system gnu-build-system)
+    (arguments
+     `(#:tests? #f                      ; no tests
+       #:make-flags
+       (list (string-append "CC=" ,(cc-for-target))
+             (string-append "PREFIX=" %output)
+             (string-append "FREETYPEINC="
+                            (assoc-ref %build-inputs "freetype")
+                            "/include/freetype2"))
+       #:phases
+       (modify-phases %standard-phases (delete 'configure))))
+    (inputs
+     (list freetype libxft libx11 libxinerama))
+    (home-page "https://tools.suckless.org/dmenu/")
+    (synopsis "Dynamic menu")
+    (description
+     "A dynamic menu for X, originally designed for dwm.  It manages large
+numbers of user-defined menu items efficiently.")
+    (license license:x11)))
+
+(define-public custom-dmenu
+  (package
+    (inherit custom-dmenu-base)
+    (name "custom-dmenu")
+    (version "1.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/ghost-of-freedom/dmenu")
+             (commit "62583225a9dfb975175d4f0c3053c2c2b41be5f3")))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1a259vky8vrbcblaqac7vr58b2qvj6zcrpx1yvz9glqhrlbvgkvx"))))
+    (home-page "https://github.com/ghost-of-freedom/dmenu")
+    (synopsis "Fork of dmenu with few patches")
+    (description
+     "@command{dmenu} uses Xresources and applies the following patches to
+@command{dmenu}:
+@itemize
+@item @uref{https://st.suckless.org/patches/alpha/, alpha}
+@item @uref{https://st.suckless.org/patches/boxdraw/, boxdraw}
+@item @uref{https://st.suckless.org/patches/clipboard/, clipboard}
+@item @uref{https://st.suckless.org/patches/disable_bold_italic_fonts/, disable_bold_italic_fonts}
+@item @uref{https://st.suckless.org/patches/externalpipe/, externalpipe}
+@item @uref{https://st.suckless.org/patches/scrollback/, scrollback}
+@item @uref{https://st.suckless.org/patches/spoiler/, spoiler}
+@item @uref{https://st.suckless.org/patches/vertcenter/, vertcenter}
+@end itemize")
+    (license license:expat)))
