@@ -137,7 +137,7 @@ numbers of user-defined menu items efficiently.")
        (method git-fetch)
        (uri (git-reference
              (url "https://github.com/ghost-of-freedom/dmenu")
-             (commit "62583225a9dfb975175d4f0c3053c2c2b41be5f3")))
+             (commit "89f41bc24cc209e03c24335d858d9ab9f16ca32e")))
        (file-name (git-file-name name version))
        (sha256
         (base32 "1a259vky8vrbcblaqac7vr58b2qvj6zcrpx1yvz9glqhrlbvgkvx"))))
