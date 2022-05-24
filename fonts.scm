@@ -1,4 +1,5 @@
 (define-module (fonts)
+  #:use-module (guix git-download)
   #:use-module (guix licenses)
   #:use-module (guix build-system font))
 
