@@ -44,10 +44,10 @@
      (method git-fetch)
      (uri (git-reference
            (url "https://github.com/ghost-of-freedom/plasma-wayland-protocols")
-           (commit "56e703a207c74d8449a723ec46019c00049988ca")))
+           (commit "1067b613212cf9c7d8da310c5147e9a783459617")))
      (file-name (git-file-name name version))
      (sha256
-      (base32 "03q8xm8awnb8bqrxbs0s09348l0ykzcar4b6ad7yk41cb7ywr068"))))
+      (base32 "034h3kki83ahr7jaw28h27qw6c98jy3y55qriazqiyfwcjzsmh8a"))))
    (build-system cmake-build-system)
    (inputs
     (list extra-cmake-modules))
