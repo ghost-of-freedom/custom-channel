@@ -44,7 +44,7 @@
      (method git-fetch)
      (uri (git-reference
            (url "https://github.com/ghost-of-freedom/plasma-wayland-protocols")
-           (commit "6c1358e7d77644b30563ab69330748cddae6c6f4")))
+           (commit "56e703a207c74d8449a723ec46019c00049988ca")))
      (file-name (git-file-name name version))
      (sha256
       (base32 "03q8xm8awnb8bqrxbs0s09348l0ykzcar4b6ad7yk41cb7ywr068"))))
