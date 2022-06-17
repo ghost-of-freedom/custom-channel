@@ -24,7 +24,7 @@
    (inputs
     (list qtbase-5 kcoreaddons ki18n knotifications))
    (native-inputs
-    (list xdg-desktop-portal extra-cmake-modules qtdeclarative kirigami kwindowsystem kwayland plasma-framework kwidgetsaddons))
+    (list xdg-desktop-portal extra-cmake-modules qtdeclarative kirigami kwindowsystem kwayland plasma-framework kwidgetsaddons kio knotifications kdeclarative))
    ;; (inputs `(("kcoreaddons" ,kcoreaddons)
    ;;           ("qtbase@5.15.2" ,qtbase@5.15.2)
    ;;          )) 
