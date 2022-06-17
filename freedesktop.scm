@@ -34,3 +34,26 @@
    (description "A backend implementation for xdg-desktop-portal that is using Qt/KDE")
    (home-page "https://github.com/KDE/xdg-desktop-portal-kde")
    (license lgpl2.0+)))
+
+(define-public plasma-wayland-protocols 
+  (package
+   (name "plasma-wayland-protocols")
+   (version "1.7.0")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/ghost-of-freedom/plasma-wayland-protocols")
+           (commit "6c1358e7d77644b30563ab69330748cddae6c6f4")))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "03q8xm8awnb8bqrxbs0s09348l0ykzcar4b6ad7yk41cb7ywr068"))))
+   (build-system cmake-build-system)
+   (inputs
+    (list extra-cmake-modules))
+   (native-inputs
+    (list qtbase-5))
+   (synopsis "Plasma Specific Protocols for Wayland")
+   (description "Plasma Specific Protocols for Wayland")
+   (home-page "https://invent.kde.org/libraries/plasma-wayland-protocols")
+   (license lgpl2.1)))
