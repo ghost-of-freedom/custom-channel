@@ -34,7 +34,7 @@
      (method git-fetch)
      (uri (git-reference
            (url "https://github.com/NetworkConfiguration/dhcpcd")
-           (commit "3c458fc7fa4146029a1e4f9e98cd7e7adf03081a")))
+           (commit "dhcpcd-9.4.1")))
      (file-name (git-file-name name version)) 
      (sha256
       (base32 "0yvm7v56jl5xsy56ks12g5cwc8rfhcxbxsnpsp94x0z3xh9q5f4n")))) 
