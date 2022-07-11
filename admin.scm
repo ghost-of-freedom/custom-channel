@@ -40,7 +40,9 @@
       (base32 "0xx40nxgs7v7i1h6vsjn3a1yqgvmzs9nyzcd00qa607cwhvlwb5b")))) 
    (build-system gnu-build-system)
    (arguments
-    `(#:tests? #f))
+    `(#:tests? #f
+      #:configure-flags
+      (list "--disable-privsep")))
    (home-page "https://roy.marples.name/projects/dhcpcd/")
    (synopsis "DHCP / IPv4LL / IPv6RA / DHCPv6 client.")
    (description "dhcpcd is a DHCP and a DHCPv6 client. It's also an IPv4LL (aka ZeroConf) client. In layman's terms, dhcpcd runs on your machine and silently configures your computer to work on the attached networks without trouble and mostly without configuration.")
