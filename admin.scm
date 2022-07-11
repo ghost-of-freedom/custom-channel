@@ -33,7 +33,7 @@
     (origin
      (method git-fetch)
      (uri (git-reference
-           (url "https://github.com/NetworkConfiguration/dhcpcd.git")
+           (url "https://github.com/NetworkConfiguration/dhcpcd")
            (commit "3c458fc7fa4146029a1e4f9e98cd7e7adf03081a")))
      (file-name (git-file-name name version)) 
      (sha256
