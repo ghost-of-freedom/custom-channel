@@ -37,7 +37,7 @@
            (commit "dhcpcd-9.4.1")))
      (file-name (git-file-name name version)) 
      (sha256
-      (base32 "0yvm7v56jl5xsy56ks12g5cwc8rfhcxbxsnpsp94x0z3xh9q5f4n")))) 
+      (base32 "0xx40nxgs7v7i1h6vsjn3a1yqgvmzs9nyzcd00qa607cwhvlwb5b")))) 
    (build-system gnu-build-system)
    (arguments
     `(#:tests? #f))
