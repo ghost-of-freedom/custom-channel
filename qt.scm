@@ -1,5 +1,6 @@
 (define-module (qt)
   #:use-module (guix licenses)
+  #:use-module (guix packages)
   #:use-module (guix git-download)
   #:use-module (gnu packages qt)
   #:use-module (gnu packages gtk)
