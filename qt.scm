@@ -26,6 +26,8 @@
    (arguments
     '(#:phases
       (modify-phases %standard-phases
+        (add-after 'build 'set-env
+          (lambda _ (setenv "INSTALL_ROOT" (assoc-ref outputs "out")) #t))
         (replace 'configure
           (lambda* (#:key inputs outputs #:allow-other-keys)
             (let ((out (assoc-ref outputs "out")))
