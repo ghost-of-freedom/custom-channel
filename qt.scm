@@ -5,7 +5,8 @@
   #:use-module (gnu packages qt)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages xorg)
-  #:use-module (guix build-system qt))
+  ;#:use-module (guix build-system qt)
+  #:use-module (guix build-system gnu))
 
 (define-public custom-qt-style-plugins
   (package
@@ -20,7 +21,17 @@
      (file-name (git-file-name name version))
      (sha256
       (base32 "1razd3xm4s4dggmns81cdv7xzpi65igxqlqjc1y2gg6nf99923rg"))))
-   (build-system qt-build-system)
+   ;;(build-system qt-build-system)
+   (build-system gnu-build-system)
+   (arguments
+    '(#:phases
+      (modify-phases %standard-phases
+        (replace 'configure
+          (lambda* (#:key inputs outputs #:allow-other-keys)
+            (let ((prefix (string-append "PREFIX="
+                                         (assoc-ref outputs "out"))))
+              (invoke "qmake" prefix))
+            #t)))))
    (inputs (list qtbase-5 gtk+ libx11 pango))
    (native-inputs (list qtbase-5 gtk+ libx11 pango))
    (synopsis "Additional style plugins for Qt")
