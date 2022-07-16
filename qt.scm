@@ -28,9 +28,9 @@
       (modify-phases %standard-phases
         (replace 'configure
           (lambda* (#:key inputs outputs #:allow-other-keys)
-            (let ((prefix (string-append "PREFIX="
-                                         (assoc-ref outputs "out"))))
-              (invoke "qmake" prefix))
+            (let ((out (assoc-ref outputs "out")))
+              (invoke "qmake"
+                      (string-append "INSTALL_ROOT=" out)))
             #t)))))
    (inputs (list qtbase-5 gtk+ libx11 pango))
    (native-inputs (list qtbase-5 gtk+ libx11 pango))
