@@ -78,10 +78,10 @@
        (method git-fetch)
        (uri (git-reference
              (url "https://github.com/ghost-of-freedom/dmenu")
-             (commit "b277baa37bfb4bf7157a0c5c888b33ddfe9a8a01")))
+             (commit "30c3931534dadedff0be760e5d10b2684bdf2a1e")))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "174rvnwnw1sb424jzz3sxa3mfza6frkwnf8k4d13200nfz3x5x8m"))))
+        (base32 "03lh3mh49ywsp8cn9dv2d7mdz2frkmvcv4vmyc1pid09jhibils9"))))
     (build-system gnu-build-system)
     (arguments
      `(#:tests? #f                      ; no tests
