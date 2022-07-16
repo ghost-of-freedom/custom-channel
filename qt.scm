@@ -8,6 +8,8 @@
   ;#:use-module (guix build-system qt)
   #:use-module (guix build-system gnu))
 
+(define *outname* #t)
+
 (define-public custom-qt-style-plugins
   (package
    (name "custom-qt-style-plugins")
@@ -26,18 +28,28 @@
    (arguments
     '(#:phases
       (modify-phases %standard-phases
-        ;; (add-after 'build 'set-env
-        ;;   (lambda _ (setenv "INSTALL_ROOT" (assoc-ref outputs "out")) #t))
         (replace 'configure
           (lambda* (#:key inputs outputs #:allow-other-keys)
-            (let ((out (assoc-ref outputs "out")))
-              (invoke "qmake")
-              (substitute* "Makefile"
-                ;(("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/")
-                (("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/lib/qt5/plugins/styles")
-                 (string-append out "/lib/qt5/plugins/styles"))))
-                ;(("/gnu/store/.*qt-base-5.15.2/")
-                ; (string-append out "/"))))
+            (invoke "qmake")))
+        (add-after 'build 'replace-makefiles
+          (lambda* (#:key outputs #:allow-other-keys)
+            (let* ((out (assoc-ref outputs "out")))
+              (for-each (lambda (file)
+                          (substitute* file
+                            (("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/lib/qt5/plugins/styles")
+                            (string-append out "/lib/qt5/plugins/styles"))))
+                        (cons*
+                         (find-files "." "Makefile")
+                         (find-files "src" "Makefile")
+                         (find-files "src/plugins" "Makefile")
+                         (find-files "src/plugins/styles" "Makefile")
+                         (find-files "src/plugins/styles/plastique" "Makefile")
+                         (find-files "src/plugins/styles/motif" "Makefile")
+                         (find-files "src/plugins/styles/gtk2" "Makefile")
+                         (find-files "src/plugins/styles/cleanlooks" "Makefile")
+                         (find-files "src/plugins/styles/bb10style" "Makefile")
+                         (find-files "src/plugins/platformthemes" "Makefile")
+                         (find-files "src/plugins/platformthemes/gtk2" "Makefile"))))
             #t)))))
    (inputs (list qtbase-5 gtk+ libx11 pango))
    (native-inputs (list qtbase-5 gtk+ libx11 pango))
