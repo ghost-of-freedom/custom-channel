@@ -34,7 +34,7 @@
               (invoke "qmake")
               (substitute* "Makefile"
                 (("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/")
-                 (string-append out "/")))
+                 (string-append out "/"))))
             #t)))))
    (inputs (list qtbase-5 gtk+ libx11 pango))
    (native-inputs (list qtbase-5 gtk+ libx11 pango))
