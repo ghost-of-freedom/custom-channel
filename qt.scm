@@ -33,7 +33,8 @@
             (let ((out (assoc-ref outputs "out")))
               (invoke "qmake")
               (substitute* "Makefile"
-                (("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/")
+                ;(("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/")
+                (("/gnu/store/.*qt-base-5.15.2/")
                  (string-append out "/"))))
             #t)))))
    (inputs (list qtbase-5 gtk+ libx11 pango))
