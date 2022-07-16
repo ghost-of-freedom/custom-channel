@@ -26,13 +26,14 @@
    (arguments
     '(#:phases
       (modify-phases %standard-phases
-        (add-after 'build 'set-env
-          (lambda _ (setenv "INSTALL_ROOT" (assoc-ref outputs "out")) #t))
+        ;; (add-after 'build 'set-env
+        ;;   (lambda _ (setenv "INSTALL_ROOT" (assoc-ref outputs "out")) #t))
         (replace 'configure
           (lambda* (#:key inputs outputs #:allow-other-keys)
             (let ((out (assoc-ref outputs "out")))
               (invoke "qmake"
-                      (string-append "INSTALL_ROOT=" out)))
+                      (string-append "INSTALL_ROOT=" out))
+              (setenv "INSTALL_ROOT" out))
             #t)))))
    (inputs (list qtbase-5 gtk+ libx11 pango))
    (native-inputs (list qtbase-5 gtk+ libx11 pango))
