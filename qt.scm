@@ -36,8 +36,12 @@
             (let* ((out (assoc-ref outputs "out")))
               (for-each (lambda (file)
                           (substitute* file
-                            (("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/lib/qt5/plugins/styles")
-                            (string-append out "/lib/qt5/plugins/styles"))))
+                            ;; (("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/lib/cmake")
+                            ;; (string-append out "/lib/cmake"))
+                            ;; (("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/lib/qt5/plugins/styles")
+                            ;; (string-append out "/lib/qt5/plugins/styles"))))
+                            (("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/lib/")
+                            (string-append out "/lib/"))))
                         (cons*
                          (find-files "." "Makefile")
                          (find-files "src" "Makefile")
