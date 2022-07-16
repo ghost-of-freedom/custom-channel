@@ -31,9 +31,10 @@
         (replace 'configure
           (lambda* (#:key inputs outputs #:allow-other-keys)
             (let ((out (assoc-ref outputs "out")))
-              (invoke "qmake"
-                      (string-append "INSTALL_ROOT=" out))
-              (setenv "INSTALL_ROOT" out))
+              (invoke "qmake")
+              (substitute* "Makefile"
+                (("/gnu/store/[a-zA-Z0-9]+-qtbase-[0-9.]+/")
+                 (string-append out "/")))
             #t)))))
    (inputs (list qtbase-5 gtk+ libx11 pango))
    (native-inputs (list qtbase-5 gtk+ libx11 pango))
