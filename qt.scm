@@ -21,8 +21,8 @@
      (sha256
       (base32 "1razd3xm4s4dggmns81cdv7xzpi65igxqlqjc1y2gg6nf99923rg"))))
    (build-system qt-build-system)
-   (inputs (list qt5-base gtk+ libx11 pango))
-   (native-inputs (list qt5-base gtk+ libx11 pango))
+   (inputs (list qtbase-5 gtk+ libx11 pango))
+   (native-inputs (list qtbase-5 gtk+ libx11 pango))
    (synopsis "Additional style plugins for Qt")
    (description "Additional style plugins for Qt")
    (home-page "https://github.com/qt/qtstyleplugins")
