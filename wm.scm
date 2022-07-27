@@ -2,6 +2,7 @@
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages glib)
   #:use-module (gnu packages gnome)
+  #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages base)
   #:use-module (gnu packages autotools)
@@ -39,6 +40,7 @@
      which
      autoconf
      automake ; for aclocal
+     pkg-config
      libtool
      ))
    (home-page "https://github.com/altdesktop/i3ipc-glib")
