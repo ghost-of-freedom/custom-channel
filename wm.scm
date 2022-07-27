@@ -29,7 +29,17 @@
       (base32 "1gr7cg9qvdpjbjjl6g6sn43hk21xa9wnmlygfqiv9sazyw4ynirl"))))
    (build-system gnu-build-system)
    (inputs (list libxcb xcb-proto glib gobject-introspection json-glib gtk-doc))
-   (native-inputs (list libxcb xcb-proto glib gobject-introspection json-glib gtk-doc which autoconf))
+   (native-inputs (list
+     libxcb
+     xcb-proto
+     glib
+     gobject-introspection
+     json-glib
+     gtk-doc
+     which
+     autoconf
+     automake ; for aclocal
+     ))
    (home-page "https://github.com/altdesktop/i3ipc-glib")
    (synopsis "A C interface library to i3wm ")
    (description "")
