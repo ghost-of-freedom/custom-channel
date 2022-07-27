@@ -39,6 +39,7 @@
      which
      autoconf
      automake ; for aclocal
+     libtool
      ))
    (home-page "https://github.com/altdesktop/i3ipc-glib")
    (synopsis "A C interface library to i3wm ")
