@@ -33,7 +33,7 @@
    (native-inputs (list
      libxcb
      xcb-proto
-     glib
+     `(,glib "bin") ; for glib-mkenums
      gobject-introspection
      json-glib
      gtk-doc
